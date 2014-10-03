@@ -1,11 +1,18 @@
+# Tkinter initializer and Calculator runner
+# Author: Graeme Bates
+# 2013
+# This Code is not extremely interesting, but initializes the Tkinter window and handles all of the button presses etc... 
+
 from Tkinter import *
 from ttk import *
 from Math_Functions import *
 from math import *
 from threader import *
 
-class Example(Frame):
-	
+class Calculator(Frame):
+	'''This class houses the entire
+	Calculator in all its glory
+	'''
 	global mode
 	mode = "rad"
 	
@@ -19,6 +26,10 @@ class Example(Frame):
 		self.initUI()
 		
 	def centerWindow(self):
+		'''Takes no specific input,
+		purpose is to center the 
+		window
+		'''
 		
 		w = 500
 		h = 300
@@ -487,7 +498,7 @@ def main():
 	
 	root = Tk()
 	root.configure(background='grey')
-	app = Example(root)
+	app = Calculator(root)
 	root.mainloop()
 	
 if __name__ == '__main__':
