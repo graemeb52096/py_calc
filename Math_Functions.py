@@ -11,15 +11,6 @@ from math import *
 # (WARNING: LARGE LOOPING MAY CAUSE LARGER ROUNDING ERROR)
 number_of_loops = 10
 
-
-def print_color(this_color, string):
-    return "\033[" + this_color + "m" + string + "\033[0m"
-
-# Color value is set to a purple like color
-# but can be changed by editing value below
-color_val = str(35)
-
-
 # This function will evaluate a given factorial x: x!
 def Factorial(x):
     x = int(x)
