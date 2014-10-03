@@ -45,7 +45,7 @@ def E(x):
 	#variable n is used for our for loop
 	n = 0
 	
-	number_of_loops = 200
+	number_of_loops = 100
     
 	
 	#The loop below is our taylor series (x - ((x^i)/i!) + ((x^i)/i!)) 
@@ -61,6 +61,7 @@ def E(x):
 	
 	#Here we round our answer to the nearest 12 digits	
 	y = round(y, 12)
+	
 	y = float(y)
 	#And now we return our answer	
 	return y
