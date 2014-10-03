@@ -3,11 +3,8 @@
 # 2013
 # This code hopes to demonstrate how a calculator actually works behind the scenes 
 
-
-from decimal import *
 from time import *
 from math import *
-#from threader import *
 
 #Number of loops used in Taylor Series (WARNING: LARGE LOOPING MAY CAUSE LARGER ROUNDING ERROR)
 number_of_loops = 10
@@ -42,7 +39,7 @@ def E(x):
 	#variable y is used to house the answer of our series
 	y = 1
 	#variable x remains as the original input
-	x = Decimal(x)
+	x = (x)
 	#variable i acts as our power
 	i = 1
 	#variable n is used for our for loop

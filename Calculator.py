@@ -1,7 +1,3 @@
-# Tkinter initializer and Calculator runner
-# Author: Graeme Bates
-# 2013
-# This Code is not extremely interesting, but initializes the Tkinter window and handles all of the button presses etc... 
 
 from Tkinter import *
 from ttk import *
@@ -70,7 +66,7 @@ class Calculator(Frame):
 		#-----CALL BACKS-----#
 		def eCallBack():
 			x = entry.get()
-			x = Decimal(x)
+			x = float(x)
 			
 			y = E(x)
 			
@@ -86,9 +82,9 @@ class Calculator(Frame):
 				x = 0
 				
 			if mode == "deg":
-				x = (Decimal(x)*Decimal(pi))/180
+				x = ((x)*(pi))/180
 				
-			x = Decimal(x)
+			x = float(x)
 
 
 			print '\nCALCULATING SINE of:', x ,'Radians\n'
@@ -103,7 +99,7 @@ class Calculator(Frame):
 			#if there is no input, set default to zero
 			if x == '':
 				x = 0
-			x = Decimal(x)
+			x = float(x)
 			print '\nCALCULATING COSINE of:', x ,'Radians\n'
 
 			y = Cos(x)
@@ -116,7 +112,7 @@ class Calculator(Frame):
 			#if there is no input, set default to zero
 			if x == '':
 				x = 0
-			x = Decimal(x)
+			x = float(x)
 			print '\nCALCULATING TANGENT of:', x ,'Radians\n'
 
 			y = Tan(x)
@@ -129,7 +125,7 @@ class Calculator(Frame):
 			#if there is no input, set default to zero
 			if x == '':
 				x = 0
-			x = Decimal(x)
+			x = float(x)
 			print '\nCALCULATING COSECANT of:', x ,'Radians\n'
 
 			if x != 0:
@@ -145,7 +141,7 @@ class Calculator(Frame):
 			#if there is no input, set default to zero
 			if x == '':
 				x = 0
-			x = Decimal(x)
+			x = float(x)
 			print '\nCALCULATING SECANT of:', x ,'Radians\n'
 
 			y = Sec(x)
@@ -158,7 +154,7 @@ class Calculator(Frame):
 			#if there is no input, set default to zero
 			if x == '':
 				x = 0
-			x = Decimal(x)
+			x = float(x)
 			print '\nCALCULATING COTANGENT of:', x ,'Radians\n'
 			if x != 0:
 				y = Cot(x)
@@ -171,9 +167,9 @@ class Calculator(Frame):
 		def dtr_call():
 			x = entry.get()
 			
-			x = Decimal(x)
+			x = float(x)
 			
-			y = (x*Decimal(pi))/180
+			y = (x*(pi))/180
 			
 			entry.delete(0, END)
 			entry.insert(0, y)
@@ -181,9 +177,9 @@ class Calculator(Frame):
 		def rtd_call():
 			x = entry.get()
 			
-			x = Decimal(x)
+			x = float(x)
 			
-			y = (x*180)/Decimal(pi)
+			y = (x*180)/(pi)
 			
 			entry.delete(0, END)
 			entry.insert(0, y)
@@ -242,11 +238,11 @@ class Calculator(Frame):
 		
 		def Pi_call():
 			if entry.get() == '0':
-				y = Decimal(pi)
+				y = (pi)
 				entry.delete(0, END)
 				entry.insert(END, y)
 			else:
-				y = Decimal(pi) * Decimal(entry.get())
+				y = float(pi) * float(entry.get())
 				entry.delete(0, END)
 				entry.insert(END, y)
 		
@@ -255,7 +251,7 @@ class Calculator(Frame):
 			Temp_Function = 'div'
 			global Temp_Val
 			Temp_Val = entry.get()
-			Temp_Val = Decimal(Temp_Val)
+			Temp_Val = (Temp_Val)
 			entry.delete(0, END)
 			
 		def mul_call():
@@ -263,7 +259,7 @@ class Calculator(Frame):
 			Temp_Function = 'mul'
 			global Temp_Val
 			Temp_Val = entry.get()
-			Temp_Val = Decimal(Temp_Val)
+			Temp_Val = (Temp_Val)
 			entry.delete(0, END)
 			
 		def add_call():
@@ -271,7 +267,7 @@ class Calculator(Frame):
 			Temp_Function = 'add'
 			global Temp_Val
 			Temp_Val = entry.get()
-			Temp_Val = Decimal(Temp_Val)
+			Temp_Val = (Temp_Val)
 			entry.delete(0, END)
 			
 		def sub_call():
@@ -279,24 +275,24 @@ class Calculator(Frame):
 			Temp_Function = 'sub'
 			global Temp_Val
 			Temp_Val = entry.get()
-			Temp_Val = Decimal(Temp_Val)
+			Temp_Val = (Temp_Val)
 			entry.delete(0, END)
 
 		def eql_call():
 			global Temp_Function
 			global Temp_Val
 			if Temp_Function == 'div':
-				y = Temp_Val/Decimal(entry.get())
+				y = Temp_Val/(entry.get())
 			elif Temp_Function == 'mul':
-				y = Temp_Val * Decimal(entry.get())
+				y = Temp_Val * (entry.get())
 			elif Temp_Function == 'add':
-				y = Temp_Val + Decimal(entry.get())
+				y = Temp_Val + (entry.get())
 			elif Temp_Function == 'sub':
-				y = Temp_Val - Decimal(entry.get())
+				y = Temp_Val - (entry.get())
 			else:
 				y = entry.get()
 			
-			y = Decimal(y)
+			y = (y)
 			
 			Temp_Function = 'null'
 			Temp_Val = 0
