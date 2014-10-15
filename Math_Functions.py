@@ -215,3 +215,23 @@ def Cot(x):
     y = 1 / (Tan(x))
 
     return y
+
+# Square root for x: Root(x)
+def Root(x):
+  '''(Number) -> float
+  Given a number, this function will output the an esimated root
+
+  >>> Root(6)
+  2.44948974278
+  '''
+  # Here we are going to use the Babylonian Method
+  # The Babylonian method uses guesses to estimate the square root like so:
+  # sqr(6) Guess 2. 6/2 = 3. 2+3/2 = 2.5. 6/2.5 = 2.4. 2.4+2.5/2 = 2.45
+  # 6/2.45 = 2.4489... As you can see we start getting closer and close to the
+  # real solution (2.44948...) very quickly.
+  y = float(2)
+  for n in range (0, 10):
+    temp_val = (x / y)
+    y = ((y + temp_val) / 2)
+  y = round(y, 12)
+  return y
