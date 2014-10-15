@@ -1,22 +1,31 @@
 # Math Functions for py_calc
 # Author: Graeme Bates
-# 2013
+# 2014
 # This code hopes to demonstrate how a
-# calculator actually works behind the scenes
+# calculator solves complex functions
 
 from time import *
 from math import *
 
-# Number of loops used in Taylor Series
+# Number of loops used to approximate values
 # (WARNING: LARGE LOOPING MAY CAUSE LARGER ROUNDING ERROR)
 number_of_loops = 10
 
+
 # This function will evaluate a given factorial x: x!
 def Factorial(x):
+    '''(number) -> float
+    This function will solve factorials
+
+    >>> Factorial(4)
+    24
+    '''
     x = int(x)
     fact = 1
     for i in range(1, x + 1):
         fact = fact * i
+    fact = round(fact, 12)
+    fact = float(fact)
     return fact
 
 
@@ -44,16 +53,16 @@ def E(x):
     # The loop below is our taylor series (x - ((x^i)/i!) + ((x^i)/i!))
     for n in range(0, number_of_loops):
         # temp is used to store the value for (x^i)/i!
-        temp = (((x ** i)/(int(Factorial(i)))))
+        temp = (((x ** i)/(float(Factorial(i)))))
         # y is then set to y - temp
         y = (y + temp)
         # Here we increment i by one.
         i = i + 1
-        # Here we round our answer to the nearest 12 digits
-        y = round(y, 12)
-        y = float(y)
-        # And now we return our answer
-        return y
+    # Here we round our answer to the nearest 12 digits
+    y = round(y, 12)
+    y = float(y)
+    # And now we return our answer
+    return y
 
 
 # Sin function for x in radians:
@@ -76,36 +85,36 @@ def Sin(x):
         rot = x / ((2 * pi))
         rot = int(rot)
         x = x - (2 * pi * rot)
-        # variable y is used to house the answer of our series
-        y = (x)
-        # variable x remains as the original input
-        x = (x)
-        # variable i acts as our power
-        i = 3
-        # variable n is used for our for loop
-        n = 0
+    # variable y is used to house the answer of our series
+    y = (x)
+    # variable x remains as the original input
+    x = (x)
+    # variable i acts as our power
+    i = 3
+    # variable n is used for our for loop
+    n = 0
 
-        # The loop below is our taylor series (x - ((x^i)/i!) + ((x^i)/i!))
-        for n in range(0, number_of_loops):
-            # temp is used to store the value for (x^i)/i!
-            temp = (((x ** i) / (int(Factorial(i)))))
-            # y is then set to y - temp
-            y = (y - temp)
-            # Here we increment i by two.
-	    # (sin as an odd fucntion, i is always an odd number)
-            i = i + 2
-            # similarly to above, temp is used to store (x^i)/i!
-            # but is set negative since the series alternated
-            # between plus and minus
-            temp = (-1 * ((x ** i) / (int(Factorial(i)))))
-            y = (y - temp)
-            # Again we increment i by two
-            i = i + 2
-        # Here we round our answer to the nearest 12 digits
-        y = round(y, 12)
-        y = float(y)
-        # And now we return our answer
-        return y
+    # The loop below is our taylor series (x - ((x^i)/i!) + ((x^i)/i!))
+    for n in range(0, number_of_loops):
+        # temp is used to store the value for (x^i)/i!
+        temp = (((x ** i) / (float(Factorial(i)))))
+        # y is then set to y - temp
+        y = (y - temp)
+        # Here we increment i by two.
+        # (sin as an odd fucntion, i is always an odd number)
+        i = i + 2
+        # similarly to above, temp is used to store (x^i)/i!
+        # but is set negative since the series alternated
+        # between plus and minus
+        temp = (-1 * ((x ** i) / (float(Factorial(i)))))
+        y = (y - temp)
+        # Again we increment i by two
+        i = i + 2
+    # Here we round our answer to the nearest 12 digits
+    y = round(y, 12)
+    y = float(y)
+    # And now we return our answer
+    return y
 
 
 # Cos function for x in radians: Cos(x)
@@ -127,25 +136,24 @@ def Cos(x):
         rot = x / ((2 * pi))
         rot = int(rot)
         x = x - (2 * pi * rot)
-        y = 1
-        x = (x)
-        i = 2
-        n = 0
+    y = 1
+    x = (x)
+    i = 2
+    n = 0
 
     # This loop is very similar to our Sin taylor series but
     # is in the form (1 - ((x^i)/i!) + ((x^i)/i!)) where i is
     # always an even number (i.e. cos is an even funciton)
     for n in range(0, number_of_loops):
-
-        temp = (((x ** i) / (int(Factorial(i)))))
+        temp = (((x ** i) / (float(Factorial(i)))))
         y = (y - temp)
         i = i + 2
-        temp = (-1 * ((x ** i) / (int(Factorial(i)))))
+        temp = (-1 * ((x ** i) / (float(Factorial(i)))))
         y = (y - temp)
         i = i + 2
-        y = round(y, 12)
-        y = float(y)
-        return y
+    y = round(y, 12)
+    y = float(y)
+    return y
 
 
 # Tan function for x in radians: Tan(x)
@@ -166,13 +174,10 @@ def Tan(x):
     s = Sin(x)
     c = Cos(x)
 
-    s = (s)
-    c = (c)
     # Tan = y = s/c = Sin(x)/Cos(x)
     y = s / c
 
     y = round(y, 12)
-
     return y
 
 
@@ -216,22 +221,51 @@ def Cot(x):
 
     return y
 
+
 # Square root for x: Root(x)
 def Root(x):
-  '''(Number) -> float
-  Given a number, this function will output the an esimated root
+    '''(Number) -> float
+    Given a number, this function will output the an esimated root
 
-  >>> Root(6)
-  2.44948974278
-  '''
-  # Here we are going to use the Babylonian Method
-  # The Babylonian method uses guesses to estimate the square root like so:
-  # sqr(6) Guess 2. 6/2 = 3. 2+3/2 = 2.5. 6/2.5 = 2.4. 2.4+2.5/2 = 2.45
-  # 6/2.45 = 2.4489... As you can see we start getting closer and close to the
-  # real solution (2.44948...) very quickly.
-  y = float(2)
-  for n in range (0, 10):
-    temp_val = (x / y)
-    y = ((y + temp_val) / 2)
-  y = round(y, 12)
-  return y
+    >>> Root(6)
+    2.449489742783
+    '''
+    # Here we are going to use the Babylonian Method
+    # The Babylonian method uses guesses to estimate the square root like so:
+    # sqr(6) Guess 2. 6/2 = 3. 2+3/2 = 2.5. 6/2.5 = 2.4. 2.4+2.5/2 = 2.45
+    # 6/2.45 = 2.4489... As you can see we start getting closer and close
+    # to the real solution (2.44948...) very quickly.
+    # Guess starts at 2
+    y = float(2)
+    # Loop 'number_of_loops' times
+    for n in range(0, number_of_loops):
+        # Set our temp_val equal to x over our guess
+        temp_val = (x / y)
+        # Set our guess to the average our last guess and our Temp_val
+        y = ((y + temp_val) / 2)
+    # Round y to the 12th digit
+    y = round(y, 12)
+    # Return the Root
+    return y
+
+
+# Nth root for x: Nth_Root(x)
+def Nth_Root(x, n):
+    '''(number, number) -> float
+    Given a number, x, and an int, n, this function will estimate the nth root
+    of x
+
+    >>> Nth_Root(6, 3)
+    1.817120592832
+    '''
+    # Using a similar idea as Root(x), we start with a guess and then
+    # refine that guess until we very accuretly approximate the Nth root
+    # Guess starts at 2
+    y = float(2)
+    # Loop 'number_of_loops' times
+    for i in range(0, number_of_loops):
+        # Here we are setting our temp_val to
+        temp_val = ((n - 1) * y) / n
+        y = temp_val + (x / (y**(n-1))) / n
+    y = round(y, 12)
+    return y
