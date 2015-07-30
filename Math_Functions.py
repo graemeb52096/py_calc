@@ -4,7 +4,6 @@
 # This code hopes to demonstrate how a
 # calculator solves complex functions
 
-from time import *
 from math import *
 
 # Number of loops used to approximate values
